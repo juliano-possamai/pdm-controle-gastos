@@ -1,26 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Text, View, TextInput, Button, Select } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { Text, View, Button } from 'react-native';
 import { TextField, Picker, NumberInput } from 'react-native-ui-lib';
 import { ExpenseContext } from '../contexts/ExpenseContext';
 
-
 //react-native-toast-message
+//TODO rever libs que serão usadas para os componentes da interface
+//TODO rever tratamentos de inputs controlados, métodos onChange ou refs
+//TODO permitir inserir valores positivos e negativos (seleção de tipo de despesa, entrada ou saída)
+
 const Form = ({navigation}) => {
-	const { saveExpense, getCategories } = useContext(ExpenseContext);
+	const { save, getCategories } = useContext(ExpenseContext);
 
 	const [expense, setExpense] = useState({
-		description: null,
-		category: null,
-		value: null,
-	});
+		description: '',
+		category: '',
+		value: '',
+	})
 
 	const handleChange = (name, value) => {
 		setExpense({ ...expense, [name]: value });
-	};
+	}
 
 	const handleSubmit = () => {
-		console.log('Form submitted:', expense);
-	};
+		//TODO adicionar validação ao salvar
+		save(0, expense);
+		navigation.navigate('Home');
+	}
 
 	return (
 		<View>
@@ -31,7 +36,6 @@ const Form = ({navigation}) => {
 				validate={['required', (value) => value.length > 3]}
 				validationMessage={['Campo obrigatório', 'A descrição deve possuir mais de 3 caracteres']}
 				placeholder="Informe a descrição"
-				floatingPlaceholder
 			/>
 			<Text>Categoria: </Text>
 			<Picker

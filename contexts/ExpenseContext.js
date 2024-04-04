@@ -6,8 +6,8 @@ function ExpenseProvider({ children }) {
 	const [expenses, setExpenses] = useState([])
 
 	const save = (id, expense) => {
-		if (!id) {
-			return setExpenses([...expenses, expense]);
+		if (!id > 0) {
+			return setExpenses([...expenses, {id: id, ...expense}]);
 		}
 
 		const index = expenses.findIndex((exp) => exp.id === id);
