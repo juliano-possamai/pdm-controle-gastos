@@ -6,7 +6,12 @@ import { ExpenseContext } from '../contexts/ExpenseContext';
 //react-native-toast-message
 //TODO rever libs que serão usadas para os componentes da interface
 //TODO rever tratamentos de inputs controlados, métodos onChange ou refs
-//TODO permitir inserir valores positivos e negativos (seleção de tipo de despesa, entrada ou saída)
+/*TODO
+	Cadastro de metas: ex, comprar churrasco, carvão
+	Cadastro de entradas: Clica na meta, vincula pessoa, valor
+	listagem de metas
+	detalhes de meta, detalhando quanto cada pessoa contribuiu no total e quanto falta para atingir a meta
+*/
 
 const Form = ({navigation}) => {
 	const { save, getCategories } = useContext(ExpenseContext);
