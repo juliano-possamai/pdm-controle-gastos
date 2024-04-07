@@ -2,19 +2,10 @@ import { GoalContext } from '../contexts/GoalContext';
 import React, { useContext, useEffect, useState } from 'react';
 import { Input, Button, Layout, Text } from '@ui-kitten/components';
 
-
-//react-native-toast-message
-//TODO rever libs que serão usadas para os componentes da interface
-//TODO rever tratamentos de inputs controlados, métodos onChange ou refs
-/*TODO
-	Cadastro de metas: ex, comprar churrasco, carvão
-	Cadastro de entradas: Clica na meta, vincula pessoa, valor
-	listagem de metas
-	detalhes de meta, detalhando quanto cada pessoa contribuiu no total e quanto falta para atingir a meta
-*/
-
 export default ({ route, navigation }) => {
 	const { saveGoal, findGoal } = useContext(GoalContext);
+	const [goal, setGoal] = useState({ name: '', value: '' })
+	const [errors, setErrors] = useState({});
 	const id = route.params.id;
 
 	useEffect(() => {
@@ -23,16 +14,28 @@ export default ({ route, navigation }) => {
 		}
 	}, [id])
 
-	const [goal, setGoal] = useState({
-		name: '',
-		value: ''
-	})
-
 	const handleChange = (name, value) => {
 		setGoal({ ...goal, [name]: value });
 	}
 
+	const validateSubmit = () => {
+		if (!goal.name || !goal.value) {
+			setErrors({
+				name: !goal.name ? 'Campo obrigatório' : '',
+				value: !goal.value ? 'Campo obrigatório' : '',
+			});
+
+			return false;
+		}
+
+		return true;
+	}
+
 	const handleSubmit = () => {
+		if (!validateSubmit()) {
+			return;
+		}
+
 		saveGoal(id, goal);
 		navigation.navigate('Home');
 	}
@@ -46,6 +49,7 @@ export default ({ route, navigation }) => {
 				value={goal.name}
 				onChangeText={val => handleChange('name', val)}
 			/>
+			{errors.name && <Text category='c1' status='danger'>{errors.name}</Text>}
 			<Text category='h6' style={{ marginTop: 16, marginBottom: 8 }}>Valor</Text>
 			<Input
 				placeholder='Digite o valor'
@@ -53,6 +57,7 @@ export default ({ route, navigation }) => {
 				onChangeText={val => handleChange('value', val)}
 				keyboardType='numeric'
 			/>
+			{errors.value && <Text category='c1' status='danger'>{errors.value}</Text>}
 			<Button style={{ marginTop: 16 }} onPress={handleSubmit}>Salvar</Button>
 		</Layout>
 	);

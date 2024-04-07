@@ -3,7 +3,7 @@ import { GoalContext } from '../contexts/GoalContext';
 import { List, ListItem, Layout, Button, Icon, Text } from '@ui-kitten/components';
 import GoalSavingsList from './GoalSavingsList';
 
-export default function ({ navigation }) {
+export default ({ navigation }) => {
 	const { goals, removeGoal } = useContext(GoalContext);
 	const [visibleDropdown, setVisibleDropdown] = useState(0);
 
@@ -52,7 +52,7 @@ export default function ({ navigation }) {
 		return (
 			<>
 				<ListItem
-					title={`${item.name}: ${item.value}`}
+					title={`${item.name}: R$ ${item.value}`}
 					accessoryLeft={() => renderChevron(item.id, isVisible)}
 					accessoryRight={() => renderActions(item.id)}
 				/>
@@ -67,7 +67,12 @@ export default function ({ navigation }) {
 				data={goals}
 				renderItem={renderItem}
 			/>
-			<Button onPress={() => navigation.push('GoalForm')}>Adicionar Meta</Button>
+			<Button
+				style={{ margin: 16, borderRadius: 0 }}
+				onPress={() => navigation.push('GoalForm')}
+			>
+				Adicionar Meta
+			</Button>
 		</Layout>
 	);
 };

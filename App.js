@@ -22,12 +22,13 @@ export default () => {
 						<Stack.Navigator
 							screenOptions={{
 								headerStyle: {
-									backgroundColor: '#f4511e',
+									backgroundColor: '#2c3e50',
 								},
 								headerTintColor: '#fff',
 								headerTitleStyle: {
-									fontWeight: 'bold',
-								},
+									color: '#ffffff',
+									fontSize: 20
+								}
 							}}
 						>
 							<Stack.Screen
@@ -38,7 +39,7 @@ export default () => {
 							<Stack.Screen
 								name="GoalForm"
 								component={GoalForm}
-								options={{ title: 'Incluir meta' }}
+								options={({ route }) => ({ title: !route.params.id ? 'Incluir meta' : 'Editar meta' })}
 								initialParams={{ id: 0 }}
 							/>
 							<Stack.Screen
