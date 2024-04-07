@@ -6,16 +6,12 @@ import { StyleSheet, View } from 'react-native';
 export default ({ goalId, savings, visible }) => {
 	const { removeSaving } = useContext(GoalContext);
 
-	const handleDelete = (id) => {
-		removeSaving(goalId, id);
-	};
-
 	const renderItemAccessory = (id) => (
 		<Button
 			appearance='ghost'
 			status='danger'
 			accessoryLeft={<Icon name='trash-2-outline' />}
-			onPress={() => handleDelete(id)}
+			onPress={() => removeSaving(goalId, id)}
 		/>
 	);
 
