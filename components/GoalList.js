@@ -11,18 +11,21 @@ export default function ({ navigation }) {
 		<>
 			<Button
 				appearance='ghost'
+				size='small'
 				status='success'
 				accessoryLeft={<Icon name='plus-outline' />}
 				onPress={() => navigation.push('SavingForm', { goalId: id })}
 			/>
 			<Button
 				appearance='ghost'
+				size='small'
 				status='primary'
 				accessoryLeft={<Icon name='edit-outline' />}
 				onPress={() => navigation.push('GoalForm', { id: id })}
 			/>
 			<Button
 				appearance='ghost'
+				size='small'
 				status='danger'
 				accessoryLeft={<Icon name='trash-2-outline' />}
 				onPress={() => removeGoal(id)}
