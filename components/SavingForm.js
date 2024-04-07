@@ -1,16 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { Modal, Layout, Text, Input, Button } from '@ui-kitten/components';
+import { Layout, Text, Input, Button } from '@ui-kitten/components';
 import { GoalContext } from '../contexts/GoalContext';
-
-//react-native-toast-message
-//TODO rever libs que serão usadas para os componentes da interface
-//TODO rever tratamentos de inputs controlados, métodos onChange ou refs
-/*TODO
-	Cadastro de metas: ex, comprar churrasco, carvão
-	Cadastro de entradas: Clica na meta, vincula pessoa, valor
-	listagem de metas
-	detalhes de meta, detalhando quanto cada pessoa contribuiu no total e quanto falta para atingir a meta
-*/
 
 export default ({ route, navigation }) => {
 	const { saveSavings } = useContext(GoalContext);
@@ -30,17 +20,14 @@ export default ({ route, navigation }) => {
 		if (!saving.who || !saving.value) {
 			setErrors({
 				who: !saving.who ? 'Campo obrigatório' : '',
-				value: !saving.value ? 'Campo obrigatório' : '',
-			});
+				value: !saving.value ? 'Campo obrigatório' : ''
+			})
 
 			return false;
 		}
 
 		if (isNaN(saving.value) || parseFloat(saving.value) <= 0) {
-			setErrors({
-				value: 'Valor deve ser maior que 0',
-			});
-
+			setErrors({ value: 'Valor deve ser maior que 0' });
 			return false;
 		}
 

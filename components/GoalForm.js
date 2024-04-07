@@ -22,8 +22,8 @@ export default ({ route, navigation }) => {
 		if (!goal.name || !goal.value) {
 			setErrors({
 				name: !goal.name ? 'Campo obrigatório' : '',
-				value: !goal.value ? 'Campo obrigatório' : '',
-			});
+				value: !goal.value ? 'Campo obrigatório' : ''
+			})
 
 			return false;
 		}

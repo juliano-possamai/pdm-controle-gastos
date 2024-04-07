@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { GoalContext } from '../contexts/GoalContext';
 import { Button, Divider, Icon, List, ListItem, Text } from '@ui-kitten/components';
 import { StyleSheet, View } from 'react-native';
