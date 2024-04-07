@@ -29,7 +29,6 @@ function GoalProvider({ children }) {
 	}
 
 	const saveSavings = (goalId, saving) => {
-		console.log("🚀 ~ saveSavings ~ saving:", saving)
 		const index = goals.findIndex((goal) => goal.id === goalId);
 		let goal = goals[index];
 		let savingId = goal.savings.length + 1;
@@ -39,12 +38,10 @@ function GoalProvider({ children }) {
 	};
 
 	const removeSaving = (goalId, savingId) => {
-		console.log("🚀 ~ removeSaving ~ savingId:", savingId)
 		const index = goals.findIndex((goal) => goal.id === goalId);
 
 		goals[index].savings = goals[index].savings.filter((saving) => saving.id !== savingId);
 		setGoals([...goals])
-		console.log('🚀 ~ removeSaving ~ goals', goals)
 	};
 
 	return (
