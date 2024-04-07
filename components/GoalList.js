@@ -63,6 +63,9 @@ export default ({ navigation }) => {
 
 	return (
 		<Layout style={{ flex: 1 }}>
+			{goals.length === 0 &&
+				<Text style={{ textAlign: 'center', marginTop: 16 }}>Nenhuma meta cadastrada</Text>
+			}
 			<List
 				data={goals}
 				renderItem={renderItem}
