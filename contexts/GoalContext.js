@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const GoalContext = createContext();
 
 function GoalProvider({ children }) {
-	const [goals, setGoals] = useState([{ id: 1, name: 'Churrasco', value: 100, savings: [{ id: 1, who: 'Eu', amount: 50 }, { id: 2, who: 'Tu', amount: 50 }] }])
+	const [goals, setGoals] = useState([])
 
 	const findGoal = (id) => {
 		return goals.find((goal) => goal.id === id);
