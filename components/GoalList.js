@@ -4,7 +4,7 @@ import { List, ListItem, Layout, Button, Icon, Text } from '@ui-kitten/component
 import GoalSavingsList from './GoalSavingsList';
 
 export default ({ navigation }) => {
-	const { goals, removeGoal } = useContext(GoalContext);
+	const { goals, isGoalAchieved, removeGoal } = useContext(GoalContext);
 	const [visibleDropdown, setVisibleDropdown] = useState(0);
 
 	const renderActions = (id) => (
@@ -52,7 +52,8 @@ export default ({ navigation }) => {
 		return (
 			<>
 				<ListItem
-					title={`${item.name}: R$ ${item.value}`}
+					style={{ backgroundColor: isGoalAchieved(item.id) ? '#C7FFC8' : 'transparent'}}
+					title={`${item.name}: R$${item.value}`}
 					accessoryLeft={() => renderChevron(item.id, isVisible)}
 					accessoryRight={() => renderActions(item.id)}
 				/>

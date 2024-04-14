@@ -44,8 +44,15 @@ function GoalProvider({ children }) {
 		setGoals([...goals])
 	};
 
+	const isGoalAchieved = (goalId) => {
+		const goal = findGoal(goalId);
+		const totalSavings = goal.savings.reduce((acc, saving) => acc + parseFloat(saving.value), 0);
+		return totalSavings >= parseFloat(goal.value);
+
+	}
+
 	return (
-		<GoalContext.Provider value={{ goals, findGoal, saveGoal, removeGoal, getSavings, saveSavings, removeSaving }}>
+		<GoalContext.Provider value={{ goals, findGoal, isGoalAchieved, saveGoal, removeGoal, getSavings, saveSavings, removeSaving }}>
 			{children}
 		</GoalContext.Provider>
 	);
