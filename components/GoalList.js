@@ -63,6 +63,7 @@ export default ({ navigation }) => {
 	}
 
 	return (
+		// Botão de logout
 		<Layout style={{ flex: 1 }}>
 			{goals.length === 0 &&
 				<Text style={{ textAlign: 'center', padding: 16 }}>Nenhuma meta cadastrada</Text>

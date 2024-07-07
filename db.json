@@ -1,0 +1,13 @@
+{
+	"login": {
+		"user": {
+			"username": "username",
+			"role": "user"
+		},
+		"accessToken": "fakeAccessToken"
+	},
+	"categories": [
+		{"id": 1, "title": "Hello World"},
+		{"id": 2, "title": "Another Post"}
+	]
+}

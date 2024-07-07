@@ -48,7 +48,6 @@ function GoalProvider({ children }) {
 		const goal = findGoal(goalId);
 		const totalSavings = goal.savings.reduce((acc, saving) => acc + parseFloat(saving.value), 0);
 		return totalSavings >= parseFloat(goal.value);
-
 	}
 
 	return (
