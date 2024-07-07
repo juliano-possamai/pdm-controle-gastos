@@ -81,5 +81,5 @@ const styles = StyleSheet.create({
 	iconContainer: { alignItems: 'center', marginBottom: 8 },
 	icon: { marginTop: 24, width: 64, height: 64 },
 	label: { marginBottom: 8 },
-	button: { marginTop: 16 },
+	button: { marginTop: 16 }
 });

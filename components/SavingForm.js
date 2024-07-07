@@ -7,10 +7,7 @@ export default ({ route, navigation }) => {
 	const [errors, setErrors] = useState({});
 	const goalId = route.params.goalId;
 
-	const [saving, setSaving] = useState({
-		who: '',
-		value: '',
-	})
+	const [saving, setSaving] = useState({ who: '', value: '' })
 
 	const handleChange = (name, value) => {
 		setSaving({ ...saving, [name]: value });
