@@ -1,6 +1,8 @@
-import { createContext, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, useEffect, useState } from "react";
 
 export const GoalContext = createContext();
+const storageKey = 'GOALS';
 
 function GoalProvider({ children }) {
 	const [goals, setGoals] = useState([])
@@ -16,7 +18,7 @@ function GoalProvider({ children }) {
 		}
 
 		const index = goals.findIndex((goal) => goal.id === id);
-		goals[index] = {savings: goals[index].savings, ...goal};
+		goals[index] = { savings: goals[index].savings, ...goal };
 		setGoals([...goals])
 	}
 
@@ -49,6 +51,20 @@ function GoalProvider({ children }) {
 		const totalSavings = goal.savings.reduce((acc, saving) => acc + parseFloat(saving.value), 0);
 		return totalSavings >= parseFloat(goal.value);
 	}
+
+	useEffect(() => {
+		if (goals.length !== 0) {
+			AsyncStorage.setItem(storageKey, JSON.stringify(goals));
+		}
+	}, [goals]);
+
+	useEffect(() => {
+		AsyncStorage.getItem(storageKey).then(value => {
+			if (value) {
+				setGoals(JSON.parse(value));
+			}
+		});
+	}, []);
 
 	return (
 		<GoalContext.Provider value={{ goals, findGoal, isGoalAchieved, saveGoal, removeGoal, getSavings, saveSavings, removeSaving }}>
